@@ -52,7 +52,40 @@
             <list>
                 <value>org.openmrs.module.patientseat.api.PatientseatService</value>
                 <ref bean="patientseat.PatientseatService" />
+                 <value>org.openmrs.module.patientseat.api.seatService</value>
++                <ref bean="seatService" />
             </list>
         </property>
     </bean>
+
+
+
+
+
+
+    <bean id="seatService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
++        <property name="transactionManager">
++            <ref bean="transactionManager" />
++        </property>
++        <property name="target">
++            <bean class="org.openmrs.module.patientseat.api.impl>
++                <property name="dao">
++                    <bean class="org.openmrs.module.patientseat.api.dao.hibernate">
++                        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
++                    </bean>
++                </property>
++            </bean>
++        </property>
++        <property name="preInterceptors">
++            <ref bean="serviceInterceptors" />
++        </property>
++        <property name="transactionAttributeSource">
++            <ref bean="transactionAttributeSource" />
++        </property>
++    </bean>
+
+
+
+
+
 </beans>

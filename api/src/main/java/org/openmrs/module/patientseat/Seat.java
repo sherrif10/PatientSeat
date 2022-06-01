@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,20 +21,21 @@ import javax.persistence.Table;
 import org.openmrs.BaseOpenmrsData;
 
 @Entity
-@Table(name="seat")
+@Table(name = "seat")
 public class Seat extends BaseOpenmrsData {
-
+	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name= "seat_id")
+	@Column(name = "seat_id")
 	private Integer id;
-
-	@@ManyToOne
-	@JoinColumn(name ="name", nullable = false )
+	
+	@ManyToOne
+	@JoinColumn(name = "name", nullable = false)
 	public String name;
 	
 	@Column(name = "description")
 	public String description;
-
+	
 	@Override
 	public Integer getId() {
 		return id;
@@ -54,11 +56,11 @@ public class Seat extends BaseOpenmrsData {
 		super.setUuid(uuid);
 	}
 	
-	public User getName() {
+	public String getName() {
 		return name;
 	}
 	
-	public void setName(User name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	
@@ -69,7 +71,5 @@ public class Seat extends BaseOpenmrsData {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-
 	
 }
