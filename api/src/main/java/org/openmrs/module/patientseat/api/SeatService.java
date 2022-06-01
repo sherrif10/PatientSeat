@@ -12,7 +12,7 @@ public interface SeatService extends OpenmrsService {
 	 * Seat objects fetch and insertion in DB
 	 */
 	
-	public Seat SaveLab(Seat seat) throws APIException;
+	public Seat saveSeat(Seat seat) throws APIException;
 	
 	public List<Seat> getAllSeats() throws APIException;
 	
