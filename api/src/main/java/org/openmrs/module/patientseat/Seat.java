@@ -9,20 +9,29 @@
  */
 package org.openmrs.module.patientseat;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.openmrs.BaseOpenmrsData;
 
-/**
- * Please note that a corresponding table schema must be created in liquibase.xml.
- */
-//Uncomment 2 lines below if you want to make the Item class persistable, see also PatientseatDaoTest and liquibase.xml
-//@Entity(name = "patientseat.seat")
-//@Table(name = "patientseat_seat")
+@Entity
+@Table(name="seat")
 public class Seat extends BaseOpenmrsData {
-	
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name= "seat_id")
 	private Integer id;
-	
+
+	@@ManyToOne
+	@JoinColumn(name ="name", nullable = false )
 	public String name;
 	
+	@Column(name = "description")
 	public String description;
 
 	@Override
