@@ -11,7 +11,6 @@ import org.openmrs.module.patientseat.api.dao.SeatDao;
 public class SeatServiceImpl extends BaseOpenmrsService implements SeatService {
 	
 	public SeatServiceImpl() {
-		
 	}
 	
 	protected SeatDao dao;
@@ -41,7 +40,6 @@ public class SeatServiceImpl extends BaseOpenmrsService implements SeatService {
 		dao.deleteSeat(seat);
 	}
 	
-
 	@Override
 	public Seat getSeatByName(String name) throws APIException {
 		// TODO Auto-generated method stub

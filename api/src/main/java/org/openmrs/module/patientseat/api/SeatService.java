@@ -5,7 +5,9 @@ import java.util.List;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.patientseat.Seat;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public interface SeatService extends OpenmrsService {
 	
 	/**
