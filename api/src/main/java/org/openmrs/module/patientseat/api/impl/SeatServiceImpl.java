@@ -26,7 +26,6 @@ public class SeatServiceImpl extends BaseOpenmrsService implements SeatService {
 	public List<Seat> getAllSeats() throws APIException {
 		return dao.getAllSeats();
 	}
-
 	
 	public Seat getSeatByName(Seat name) throws APIException {
 		return dao.getSeatByName(name);

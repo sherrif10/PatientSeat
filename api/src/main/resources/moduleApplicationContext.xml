@@ -45,23 +45,24 @@
         </property>
     </bean>
 
-    <!-- Adds PatientseatService to OpenMRS context so it can be accessed
-    calling Context.getService(PatientseatService.class) -->
+    <!--Register services with openmrs services-->
+
     <bean parent="serviceContext">
         <property name="moduleService">
-            <list>
+            <list merge="true">
                 <value>org.openmrs.module.patientseat.api.PatientseatService</value>
                 <ref bean="patientseat.PatientseatService" />
+            </list>
+        </property>
+    </bean>
+     <bean parent="serviceContext">
+        <property name="moduleService">
+            <list merge="true">
                  <value>org.openmrs.module.patientseat.api.seatService</value>
 +                <ref bean="seatService" />
             </list>
         </property>
     </bean>
-
-
-
-
-
 
     <bean id="seatService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 +        <property name="transactionManager">
