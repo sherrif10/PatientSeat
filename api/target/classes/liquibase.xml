@@ -35,21 +35,5 @@
         <addForeignKeyConstraint constraintName="patientseat_item_owner_fk" baseTableName="patientseat_item" baseColumnNames="owner"  referencedTableName="users"
                                  referencedColumnNames="user_id" />
     </changeSet> -->
-
-   <changeSet id="6c57b461-4c71-400a-98f8-00da0f91ee39" author="sharif">
-        <preConditions onFail="MARK_RAN" onError="WARN">
-            <dbms type="mysql"/>
-        </preConditions>
-        <comment>Create seat table</comment>
-        <sql>
-            CREATE TABLE seat (
-                seat_id int AUTO_INCREMENT PRIMARY KEY,
-                name          varchar(255)         NOT NULL
-                description  text         NOT NULL
-                CONSTRAINT seat_id_uindex UNIQUE (seat_id),
-                FOREIGN KEY (seat_id) REFERENCES seat (seat_id) ON UPDATE CASCADE,
-            );
-        </sql>
-    </changeSet>
-
+ 
 </databaseChangeLog>
