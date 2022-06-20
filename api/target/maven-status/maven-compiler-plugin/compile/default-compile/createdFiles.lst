@@ -1,0 +1,7 @@
+org/openmrs/module/patientseat/api/impl/PatientseatServiceImpl.class
+org/openmrs/module/patientseat/api/PatientseatService.class
+org/openmrs/module/patientseat/PatientseatConfig.class
+org/openmrs/module/patientseat/api/dao/PatientseatDao.class
+org/openmrs/module/patientseat/PatientseatActivator.class
+org/openmrs/module/patientseat/Item.class
+org/openmrs/module/patientseat/constants.class

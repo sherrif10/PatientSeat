@@ -1,0 +1,6 @@
+org/openmrs/module/patientseat/web/controller/PatientseatController.class
+org/openmrs/module/patientseat/page/PatientSeatPageRequestMapper.class
+org/openmrs/module/patientseat/extension/html/AdminList.class
+org/openmrs/module/patientseat/fragment/controller/PatientseatPageFragmentRequestMapper.class
+org/openmrs/module/botswanaemr/page/controller/PatientSeatLoginPageController.class
+org/openmrs/module/patientseat/fragment/controller/UsersFragmentController.class

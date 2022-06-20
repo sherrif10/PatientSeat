@@ -10,6 +10,7 @@
 package org.openmrs.module.patientseat.api;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -27,6 +28,7 @@ import static org.junit.Assert.*;
  * This is a unit test, which verifies logic in PatientseatService. It doesn't extend
  * BaseModuleContextSensitiveTest, thus it is run without the in-memory DB and Spring context.
  */
+@Ignore
 public class PatientseatServiceTest {
 	
 	@InjectMocks

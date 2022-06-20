@@ -98,6 +98,13 @@
 		<servlet-class>@MODULE_PACKAGE@.web.FormDownloadServlet</servlet-class>
 	</servlet>
 	-->
+	 <globalProperty>
+        <property>patientseat.hospital</property>
+        <defaultValue>patientseat Hospital</defaultValue>
+        <description>
+            Hospital name that implement this application
+        </description>
+    </globalProperty>
 	<!-- /Servlets -->
 	
 	

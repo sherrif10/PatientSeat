@@ -1,0 +1,20 @@
+{
+    "id": "patientseat.registrationAdminDashboard",
+    "instanceOf": "coreapps.template.findPatient",
+    "description": "patient Registration Admin Dashboard",
+    "order": 2,
+    "config": {
+      "afterSelectedUrl": "patientseat/registrationAdminDashboard.page?appId=patientseat.registrationAdminDashboard"
+    },
+    "extensions": [
+      {
+        "id": "patientseat.registrationAdminDashboardhomepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "patientseat.registrationAdminDashboard.app.label",
+        "url": "patientseat/registrationAdminDashboard.page?appId=patientseat.registrationAdminDashboard",
+        "icon": "fa fa-user",
+        "requiredPrivilege": "App:patientseat.registrationAdminDashboard"
+      }
+    ]
+  }
