@@ -9,11 +9,17 @@
  */
 package org.openmrs.module.patientseat.api;
 
+import java.util.List;
+
+import org.openmrs.Location;
+import org.openmrs.Patient;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.patientseat.PatientseatConfig;
+import org.openmrs.module.patientseat.api.model.Seat;
 import org.openmrs.module.patientseat.Item;
+import org.openmrs.module.patientseat.PatientSeatPrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -45,4 +51,29 @@ public interface PatientseatService extends OpenmrsService {
 	@Authorized(PatientseatConfig.MODULE_PRIVILEGE)
 	@Transactional
 	Item saveItem(Item item) throws APIException;
+	
+	@Authorized({ PatientSeatPrivilegeConstants.ADD_SEAT, PatientSeatPrivilegeConstants.GET_SEAT,
+	        PatientSeatPrivilegeConstants.EDIT_SEAT })
+	public Seat saveSeat(Seat seat) throws APIException;
+	
+	@Transactional(readOnly = true)
+	@Authorized({ PatientSeatPrivilegeConstants.GET_SEAT })
+	public Seat getSeat(Integer seatId) throws APIException;
+	
+	@Transactional(readOnly = true)
+	@Authorized({ PatientSeatPrivilegeConstants.GET_SEAT })
+	public Seat getSeatByName(String name);
+	
+	@Transactional(readOnly = true)
+	@Authorized({ PatientSeatPrivilegeConstants.GET_SEAT })
+	public List<Seat> getSeatByPatient(Patient patient);
+	
+	@Transactional(readOnly = true)
+	@Authorized({ PatientSeatPrivilegeConstants.GET_SEAT })
+	public List<Seat> getSeat(Patient who, Location loc, boolean includeVoided);
+	
+	@Transactional(readOnly = true)
+	@Authorized({ PatientSeatPrivilegeConstants.EDIT_SEAT })
+	public Seat voidSeat(Seat seat, String reason);
+	
 }

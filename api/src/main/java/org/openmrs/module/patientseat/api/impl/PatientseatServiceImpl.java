@@ -9,14 +9,26 @@
  */
 package org.openmrs.module.patientseat.api.impl;
 
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openmrs.Location;
+import org.openmrs.Patient;
 import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.patientseat.Item;
 import org.openmrs.module.patientseat.api.PatientseatService;
 import org.openmrs.module.patientseat.api.dao.PatientseatDao;
+import org.openmrs.module.patientseat.api.model.Seat;
 
+/**
+ * Implementations of business logic methods for PatientSeat
+ */
 public class PatientseatServiceImpl extends BaseOpenmrsService implements PatientseatService {
+	
+	protected static final Log log = LogFactory.getLog(PatientseatServiceImpl.class);
 	
 	PatientseatDao dao;
 	
@@ -38,7 +50,7 @@ public class PatientseatServiceImpl extends BaseOpenmrsService implements Patien
 	
 	@Override
 	public Item getItemByUuid(String uuid) throws APIException {
-		return dao.getItemByUuid(uuid);
+		return ((PatientseatService) dao).getItemByUuid(uuid);
 	}
 	
 	@Override
@@ -47,6 +59,36 @@ public class PatientseatServiceImpl extends BaseOpenmrsService implements Patien
 			item.setOwner(userService.getUser(1));
 		}
 		
-		return dao.saveItem(item);
+		return ((PatientseatService) dao).saveItem(item);
+	}
+	
+	@Override
+	public Seat saveSeat(Seat seat) throws APIException {
+		return dao.saveSeat(seat);
+	}
+	
+	@Override
+	public Seat getSeat(Integer seatId) throws APIException {
+		return dao.getSeatById(seatId);
+	}
+	
+	@Override
+	public Seat getSeatByName(String name) throws APIException {
+		return dao.getSeatByName(name);
+	}
+	
+	@Override
+	public List<Seat> getSeatByPatient(Patient patient) {
+		return dao.getSeatByPatient(patient);
+	}
+	
+	@Override
+	public List<Seat> getSeat(Patient who, Location loc, boolean includeVoided) {
+		return dao.getSeat(who, loc, includeVoided);
+	}
+	
+	@Override
+	public Seat voidSeat(Seat seat, String reason) {
+		return dao.voidSeat(seat, reason);
 	}
 }

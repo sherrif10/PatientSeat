@@ -9,29 +9,44 @@
  */
 package org.openmrs.module.patientseat.api.dao;
 
-import org.hibernate.criterion.Restrictions;
-import org.openmrs.api.db.hibernate.DbSession;
-import org.openmrs.api.db.hibernate.DbSessionFactory;
-import org.openmrs.module.patientseat.Item;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository("patientseat.PatientseatDao")
-public class PatientseatDao {
+import org.openmrs.Location;
+import org.openmrs.Patient;
+import org.openmrs.api.db.DAOException;
+import org.openmrs.module.patientseat.api.model.Seat;
+
+public interface PatientseatDao {
 	
-	@Autowired
-	DbSessionFactory sessionFactory;
+	//get seat for the patients
+	/**
+	 * Saves a new seat or updates an existing seat. If an existing seat, this method will
+	 * automatically apply seat.
+	 * 
+	 * @param seat to be saved
+	 * @throws DAOException <strong>Should</strong> save seat with basic details
+	 *             <strong>Should</strong> update seat successfully <strong>Should</strong> not
+	 *             overwrite creator if non null <strong>Should</strong> fail if user is not
+	 *             supposed to edit seat of type of given seat
+	 */
+	public Seat saveSeat(Seat seat) throws DAOException;
 	
-	private DbSession getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+	/**
+	 * Get seat by internal identifier
+	 */
+	public Seat getSeatById(Integer seatId) throws DAOException;
 	
-	public Item getItemByUuid(String uuid) {
-		return (Item) getSession().createCriteria(Item.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
-	}
+	public Seat getSeatByName(String name) throws DAOException;
 	
-	public Item saveItem(Item item) {
-		getSession().saveOrUpdate(item);
-		return item;
-	}
+	public List<Seat> getSeatByPatient(Patient patient) throws DAOException;
+	
+	public List<Seat> getSeat(Patient who, Location loc, boolean includeVoided) throws DAOException;
+	
+	/**
+	 * Voiding a seat essentially removes it from circulation
+	 * 
+	 * @param seat object to void
+	 */
+	public Seat voidSeat(Seat seat, String reason) throws DAOException;
+	
 }

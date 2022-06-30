@@ -1,0 +1,4 @@
+org/openmrs/module/patientseat/web/controller/CapturePatientSeatFragmentController.class
+org/openmrs/module/patientseat/web/controller/PatientseatController.class
+org/openmrs/module/patientseat/extension/html/AdminList.class
+org/openmrs/module/patientseat/fragment/controller/UsersFragmentController.class
