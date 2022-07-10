@@ -1,18 +1,18 @@
 {
-    "id": "patientSeat.registrationAdminDashboard",
+    "id": "patientSeat.AdminDashboard",
     "instanceOf": "coreapps.template.findPatient",
     "description": "patient Registration Admin Dashboard",
     "order": 2,
     "config": {
-      "afterSelectedUrl": "patientSeat/registrationAdminDashboard.page?appId=botswanaemr.registrationAdminDashboard"
+      "afterSelectedUrl": "patientSeat/AdminDashboard.page?appId=patientSeat.registrationAdminDashboard"
     },
     "extensions": [
       {
-        "id": "botswanaemr.registrationAdminDashboardhomepageLink",
+        "id": "patientseat.homepageLink",
         "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
         "type": "link",
-        "label": "botswanaemr.registrationAdminDashboard.app.label",
-        "url": "patientSeat/registrationAdminDashboard.page?appId=botswanaemr.registrationAdminDashboard",
+        "label": "patientSeat.registrationAdminDashboard.app.label",
+        "url": "patientSeat/registrationAdminDashboard.page?appId=patientSeat.registrationAdminDashboard",
         "icon": "fa fa-user",
         "requiredPrivilege": "App:patientSeat.registrationAdminDashboard"
       }
