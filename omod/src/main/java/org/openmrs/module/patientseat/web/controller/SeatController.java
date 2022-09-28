@@ -39,31 +39,6 @@ public class SeatController {
 		return "module/patientseat/seat.form";
 	}
 	
-	// @RequestMapping(method = RequestMethod.GET)
-	// public String getSeat(@ModelAttribute("seat") Seat seat,
-	//         @RequestParam(value = "seat_id", required = false) Integer uuid, Model model) {
-	// 	if (uuid != null) {
-	// 		seat = (Seat) Context.getService(SeatService.class);
-	
-	// 	} else {
-	// 		model.addAttribute("seat", seat);
-	// 	}
-	// 	return "/module/patientseat/Seat.form";
-	// }
-	
-	//     //ensure one patient belongs to one seat
-	//     SeatService service = Context.getService(SeatService.class);
-	//     private boolean includeVoided;
-	//     List<Seat> listSeat = service.getAllSeats(includeVoided);
-	//     if(StringUtils.isEmpty(listSeat)){
-	//         for(Seat seat : listSeat) {
-	//             Integer seat_id;
-	//             if(seat_id != seat.getId()) {
-	
-	//             }
-	//         }
-	//     }
-	//  return seat;
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(@ModelAttribute("seat") Seat seat, BindingResult bindingResult, HttpServletRequest request,
 	        SessionStatus status) {
