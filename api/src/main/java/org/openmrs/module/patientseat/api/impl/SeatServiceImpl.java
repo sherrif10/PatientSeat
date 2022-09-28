@@ -25,28 +25,29 @@ public class SeatServiceImpl extends BaseOpenmrsService implements SeatService {
 		return dao.saveSeat(seat);
 	}
 	
-	public Seat getSeat(Seat seat) throws APIException {
-		return dao.getSeat(seat);
-	}
-	
 	@Override
 	public Seat getSeatByUuid(String uuid) throws APIException {
 		return dao.getSeatByUuid(uuid);
 	}
 	
-	public List<Seat> getAllSeats(boolean includeVoided) throws APIException {
-		return dao.getAllSeats(includeVoided);
+	@Override
+	public Seat getSeat(Integer seatId) throws APIException {
+		return dao.getSeat(seatId);
 	}
 	
 	@Override
-	public void deleteSeat(Seat seat) throws APIException {
-		dao.deleteSeat(seat);
+	public List<Seat> getAllSeats() throws APIException {
+		return dao.getAllSeats();
 	}
 	
 	@Override
-	public Seat getSeat(String seat) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteSeat(Integer id) throws APIException {
+		dao.deleteSeat(id);
+	}
+	
+	@Override
+	public Seat getSeatByName(String name) {
+		return dao.getSeatByName(name);
 	}
 	
 }

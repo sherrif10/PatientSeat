@@ -12,12 +12,14 @@ public interface SeatDao {
 	
 	public Seat saveSeat(Seat seat) throws DAOException;
 	
-	public Seat getSeat(Seat seat) throws DAOException;
+	public Seat getSeat(Integer seatId) throws DAOException;
 	
-	public void deleteSeat(Seat seat) throws DAOException;
+	public void deleteSeat(Integer id) throws DAOException;
 	
-	public List<Seat> getAllSeats(boolean includeVoided) throws DAOException;
+	public List<Seat> getAllSeats() throws DAOException;
 	
 	public Seat getSeatByUuid(String uuid);
+	
+	public Seat getSeatByName(String name);
 	
 }
