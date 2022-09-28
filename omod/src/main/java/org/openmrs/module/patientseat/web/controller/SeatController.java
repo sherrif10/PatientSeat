@@ -1,8 +1,12 @@
 package org.openmrs.module.patientseat.web.controller;
 
 import java.util.Date;
+//import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+//import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,56 +18,38 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.patientseat.api.Seat;
 import org.openmrs.module.patientseat.api.SeatService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-//import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.validation.BindingResult;
+//import org.springframework.util.StringUtils;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.bind.support.SessionStatus;
+//import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("module/patientseat/seat.form")
 public class SeatController {
 	
+	public List<Seat> populateSeat() {
+		return (List<Seat>) Context.getService(SeatService.class).getAllSeats();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView showSeats() {
+		ModelMap model = new ModelMap();
+		List<Seat> seats = Context.getService(SeatService.class).getAllSeats();
+		if (seats != null)
+			model.addAttribute("seat", seats);
+		return new ModelAndView("/module/patientseat/seat", model);
+	}
+	
 	/** Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	/**
-	 * Initially called after the formBackingObject method to get the landing form name
-	 * 
-	 * @return String form view name
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public String showForm() {
-		return "module/patientseat/seat.form";
-	}
-	
-	// @RequestMapping(method = RequestMethod.GET)
-	// public String getSeat(@ModelAttribute("seat") Seat seat,
-	//         @RequestParam(value = "seat_id", required = false) Integer uuid, Model model) {
-	// 	if (uuid != null) {
-	// 		seat = (Seat) Context.getService(SeatService.class);
-	
-	// 	} else {
-	// 		model.addAttribute("seat", seat);
-	// 	}
-	// 	return "/module/patientseat/Seat.form";
-	// }
-	
-	//     //ensure one patient belongs to one seat
-	//     SeatService service = Context.getService(SeatService.class);
-	//     private boolean includeVoided;
-	//     List<Seat> listSeat = service.getAllSeats(includeVoided);
-	//     if(StringUtils.isEmpty(listSeat)){
-	//         for(Seat seat : listSeat) {
-	//             Integer seat_id;
-	//             if(seat_id != seat.getId()) {
-	
-	//             }
-	//         }
-	//     }
-	//  return seat;
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(@ModelAttribute("seat") Seat seat, BindingResult bindingResult, HttpServletRequest request,
 	        SessionStatus status) {

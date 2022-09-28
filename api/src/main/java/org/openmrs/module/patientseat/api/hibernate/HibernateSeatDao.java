@@ -39,8 +39,8 @@ public class HibernateSeatDao implements SeatDao {
 	}
 	
 	@Override
-	public void deleteSeat(Seat seat) throws DAOException {
-		sessionFactory.getCurrentSession().delete(seat);
+	public void deleteSeat(Integer seatId) throws DAOException {
+		sessionFactory.getCurrentSession().delete(seatId);
 	}
 	
 	public Seat getSeatByUuid(String uuid) throws DAOException {
@@ -50,8 +50,20 @@ public class HibernateSeatDao implements SeatDao {
 	}
 	
 	@Override
-	public Seat getSeat(Seat seat) throws DAOException {
-		return (Seat) sessionFactory.getCurrentSession().save(seat);
+	public Seat getSeat(Integer seatId) throws DAOException {
+		return (Seat) sessionFactory.getCurrentSession().save(seatId);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Seat> getAllSeats() throws DAOException {
+		Criteria creteria = sessionFactory.getCurrentSession().createCriteria(Seat.class);
+		return (List<Seat>) creteria.list();
+	}
+	
+	@Override
+	public Seat getSeatByName(String name) {
+		return (Seat) sessionFactory.getCurrentSession().save(name);
+		
 	}
 	
 }
